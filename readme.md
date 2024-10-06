@@ -17,8 +17,8 @@ pip install PyQt5 opencv-python matplotlib
 
 ## Result
 
-![Snipaste_2024-10-04_11-26-16](.\img\Snipaste_2024-10-04_11-26-16.png)
+![Snipaste_2024-10-04_11-26-16](img/Snipaste_2024-10-04_11-26-16.png)
 
-![Snipaste_2024-10-04_11-29-09](.\img\Snipaste_2024-10-04_11-29-09.png)
+![Snipaste_2024-10-04_11-29-09](img/Snipaste_2024-10-04_11-29-09.png)
 
-![Snipaste_2024-10-05_08-55-49](.\img\Snipaste_2024-10-05_08-55-49.png)
+![Snipaste_2024-10-05_08-55-49](img/Snipaste_2024-10-05_08-55-49.png)
