@@ -182,15 +182,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def open_file(self):
         # 弹出文件对话框，选择图像文件
         file_name, _ = QFileDialog.getOpenFileName(self, "打开文件", "", "图片文件 (*.png *.jpg *.bmp)")
+        self.process_images(file_name)
 
-        # if file_name:
-        #     # 加载并显示图片
-        #     pixmap = QPixmap(file_name)
-        #     self.label.setPixmap(pixmap)
-        #     # self.label.setScaledContents(True)  # 让图片适应 QLabel 大小
-        #     # 调整 QLabel 的大小以适应图片
-        #     self.label.adjustSize()
-
+    def process_images(self, file_name):
         # 读取图像
         origin_image = read_image_by_path(file_name)
         # 检测图像边沿
@@ -207,27 +201,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 显示分割的彩色区域和平铺后的图像在画布上
         self.canvas_2.plot_segmented_images(colored_image, tiled_image)
 
-
     def load_and_process_images(self):
         # 获取所有图像路径
         images = glob.glob('AI/16.*')
 
         for image_path in images:
-            # 读取图像
-            origin_image = read_image_by_path(image_path)
-            # 检测图像边沿
-            edges_image = canny_edge_detector(origin_image)
-
-            # 显示原图和边缘检测后的图像在画布上
-            self.canvas_1.plot_images(origin_image, edges_image)
-
-            # 划分区域
-            data, colored_image = segment_image(edges_image, origin_image)
-            # 平铺色块
-            tiled_image = padding_part(**data)
-
-            # 显示分割的彩色区域和平铺后的图像在画布上
-            self.canvas_2.plot_segmented_images(colored_image, tiled_image)
+            self.process_images(image_path)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
