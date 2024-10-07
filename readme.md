@@ -22,3 +22,6 @@ pip install PyQt5 opencv-python matplotlib
 ![Snipaste_2024-10-04_11-29-09](img/Snipaste_2024-10-04_11-29-09.png)
 
 ![Snipaste_2024-10-05_08-55-49](img/Snipaste_2024-10-05_08-55-49.png)
+
+
+不规则形状排样算法
