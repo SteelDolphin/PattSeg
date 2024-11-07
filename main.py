@@ -1,9 +1,7 @@
 import sys, os
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(base_dir)
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QIcon
-from src.main_window import MainWindow
+from src.views.main_window_view import MainWindow
 
 def main():
     app = QApplication(sys.argv)
