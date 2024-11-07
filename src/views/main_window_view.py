@@ -1,9 +1,10 @@
 import sys
 import glob
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QFileDialog
-from src.ui_main_window import Ui_MainWindow
-from src.matplot_canvas import MatplotlibCanvas
-from src.utils import *
+from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QFileDialog
+from src.views.ui_main_window import Ui_MainWindow
+from src.utils.matplot_canvas import MatplotlibCanvas
+from src.views.help_window_view import HelpWindow  # 导入 HelpWindow 类
+from src.utils.utils import *
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -12,6 +13,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # 将 "打开文件" 菜单项的点击事件绑定到 self.open_file 方法
         self.actionOpenFile.triggered.connect(self.open_file)
+        self.actionS.triggered.connect(self.show_help_window)
 
         # 创建一个 Matplotlib 画布
         self.canvas_1 = MatplotlibCanvas(self, width=8, height=6, dpi=100)
@@ -32,7 +34,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def open_file(self):
         # 弹出文件对话框，选择图像文件
         file_name, _ = QFileDialog.getOpenFileName(self, "打开文件", "", "图片文件 (*.png *.jpg *.bmp)")
-        self.process_images(file_name)
+        if file_name:
+            self.process_images(file_name)
+        
 
     def process_images(self, file_name):
         # 读取图像
@@ -57,3 +61,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         for image_path in images:
             self.process_images(image_path)
+
+    def show_help_window(self):
+        # 打开帮助窗口
+        help_window = HelpWindow()
+        help_window.exec_()
