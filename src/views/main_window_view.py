@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QFileDialog
 from src.views.ui_main_window import Ui_MainWindow
 from src.utils.matplot_canvas import MatplotlibCanvas
 from src.views.help_window_view import HelpWindow  # 导入 HelpWindow 类
+from src.views.video_window_view import VideoStreamWidget  # 导入 HelpWindow 类
 from src.utils.utils import *
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -14,6 +15,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 将 "打开文件" 菜单项的点击事件绑定到 self.open_file 方法
         self.actionOpenFile.triggered.connect(self.open_file)
         self.actionS.triggered.connect(self.show_help_window)
+        self.actionVideo_stream.triggered.connect(self.show_video_window)
 
         # 创建一个 Matplotlib 画布
         self.canvas_1 = MatplotlibCanvas(self, width=8, height=6, dpi=100)
@@ -57,7 +59,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def load_and_process_images(self):
         # 获取所有图像路径
-        images = glob.glob('data/AI_processed/16.*')
+        images = glob.glob('data/processed_data/16.*')
 
         for image_path in images:
             self.process_images(image_path)
@@ -66,3 +68,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 打开帮助窗口
         help_window = HelpWindow()
         help_window.exec_()
+
+    def show_video_window(self):
+        # 打开帮助窗口
+        video_window = VideoStreamWidget()
+        video_window.exec_()
