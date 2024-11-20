@@ -2,7 +2,11 @@ import cv2
 import numpy as np
 
 def read_image_by_path(image_path):
-    image = cv2.imread(image_path)
+    with open(image_path, "rb") as f:
+        image_data = f.read()
+        image_array = np.frombuffer(image_data, np.uint8)
+        image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+    # image = cv2.imread(image_path)
     if image is None:
         print("Error: 图像未找到，请检查路径是否正确。")
         return None
